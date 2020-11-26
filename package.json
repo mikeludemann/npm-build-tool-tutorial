@@ -1,0 +1,50 @@
+{
+  "name": "npm-build-tool-tutorial",
+  "version": "1.0.0",
+  "description": "A simple and helpful Build-Tool process with npm",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests/test -u bdd -R spec",
+    "pretest": "npm run lint",
+    "posttest": "echo 'the test has been run!'",
+    "start": "node server.js",
+    "start:dev": "node server.js 4000",
+    "lint": "jshint *.js **/*.js",
+    "precompile": "npm run clean",
+    "clean": "rimraf lib/*",
+    "compile": "npm run compile:ts",
+    "compile:ts": "tsc --outDir ./lib --module commonjs ./src/typescript/app.ts",
+    "build:less": "lessc client/less/styles.less public/css/styles.css",
+    "build:browserify": "browserify ./client/js/app.js -o ./public/js/bundle.js",
+    "build:bundle": "browserify ./client/js/app.js | uglifyjs -mc > ./public/js/bundle.js",
+    "build:clean": "rimraf public/css/*, public/js/*",
+    "prebuild": "npm run build:clean",
+    "build": "npm run build:less && npm run build:bundle",
+    "watch:bundle": "watchify ./client/js/app.js -o ./public/js/bundle.js -v"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikeludemann/npm-build-tool-tutorial.git"
+  },
+  "keywords": [
+    "Webpack"
+  ],
+  "author": "Mike Ludemann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mikeludemann/npm-build-tool-tutorial/issues"
+  },
+  "homepage": "https://github.com/mikeludemann/npm-build-tool-tutorial#readme",
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "express": "^4.17.1",
+    "jshint": "^2.12.0",
+    "less": "^3.12.2",
+    "mocha": "^8.2.1",
+    "rimraf": "^3.0.2",
+    "should": "^13.2.3",
+    "typescript": "^4.1.2",
+    "uglifyjs": "^2.4.11",
+    "watchify": "^3.11.1"
+  }
+}
