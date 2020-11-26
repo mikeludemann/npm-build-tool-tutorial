@@ -27,7 +27,8 @@
     "url": "git+https://github.com/mikeludemann/npm-build-tool-tutorial.git"
   },
   "keywords": [
-    "Webpack"
+    "npm",
+    "build-tool"
   ],
   "author": "Mike Ludemann",
   "license": "MIT",
